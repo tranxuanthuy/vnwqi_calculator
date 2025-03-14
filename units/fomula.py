@@ -96,4 +96,4 @@ def wqi(wqi_i_sis, wqi_ii_sis, wqi_iii_sis, wqi_iv_sis, wqi_v_sis, temperature, 
         else:
             # fomula 5
             wqi = wqi_i_value * wqi_ii_value * wqi_iii_value * ( (wqi_iv_value**2) * wqi_v_value)**(1/3)
-    return round(wqi)
+    return wqi
