@@ -16,9 +16,9 @@ def wqi_ph(value):
         return 10
     elif value >= bpi[1] and value <= bpi[2]:
         return 100
-    elif value > bpi[2] and value < bpi[3]:
+    elif value > bpi[2] and value <= bpi[3]:
         return first_fomula(qi[2], qi[3], bpi[2], bpi[3], value)
-    elif value > bpi[0] and value < bpi[1]:
+    elif value >= bpi[0] and value < bpi[1]:
         return second_fomula(qi[0], qi[1], bpi[0], bpi[1], value)
 
 

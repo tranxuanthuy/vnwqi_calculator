@@ -8,7 +8,7 @@ def wqi_i(wqi_i_sis):
     output:
         WQI I
     '''
-    if 'ph' in wqi_i_sis.keys() and not pd.isna(wqi_i_sis['ph']):
+    if 'ph_value' in wqi_i_sis.keys() and not pd.isna(wqi_i_sis['ph_value']):
         ph_value = wqi_i_sis['ph_value']
     else:
         return 1
