@@ -55,7 +55,7 @@ def wqi_ii(wqi_ii_sis):
             wqi_heptachlor_heptachlorepoxide(heptachlor_heptachlorepoxide_value)
         wqi_group2_si.append(wqi_heptachlor_heptachlorepoxide_value)
     if len(wqi_group2_si) == 0:
-        return 1
+        return 100
     wqi_group2 = (np.prod(wqi_group2_si) ** (1/len(wqi_group2_si)))
     return wqi_group2
 
@@ -105,7 +105,7 @@ def wqi_iii(
         wqi_hg_value = wqi_hg(hg_value)
         wqi_group3_si.append(wqi_hg_value)
     if len(wqi_group3_si) == 0:
-        return 1
+        return 100
     wqi_group3 = ((np.prod(wqi_group3_si) ** (1/len(wqi_group3_si))))
     return wqi_group3
 
@@ -170,7 +170,7 @@ def wqi_iv(
         wqi_ppo4_value = wqi_ppo4(ppo4_value)
         wqi_group4_si.append(wqi_ppo4_value)
     if len(wqi_group4_si) == 0:
-        return 1
+        raise ValueError("Nhóm IV cần ít nhất 3 giá trị.")
     wqi_group4 = np.mean(wqi_group4_si)
     return wqi_group4
 
@@ -195,6 +195,6 @@ def wqi_v(
         wqi_ecoli_value = wqi_ecoli(ecoli_value)
         wqi_group5_si.append(wqi_ecoli_value)
     if len(wqi_group5_si) == 0:
-        return 1
+        return 100
     wqi_group5 = np.mean(wqi_group5_si)
     return wqi_group5
