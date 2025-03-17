@@ -11,11 +11,11 @@ def wqi_i(wqi_i_sis):
     if 'ph_value' in wqi_i_sis.keys() and not pd.isna(wqi_i_sis['ph_value']):
         ph_value = wqi_i_sis['ph_value']
     else:
-        return 1
+        return 1.0
     
     from units.wqi_si import wqi_ph
     wqi_ph_value = wqi_ph(ph_value)
-    wqi_i_value = wqi_ph_value*1.0 / 100
+    wqi_i_value = wqi_ph_value*1.0
     return wqi_i_value
 
 def wqi_ii(wqi_ii_sis):
@@ -56,7 +56,7 @@ def wqi_ii(wqi_ii_sis):
         wqi_group2_si.append(wqi_heptachlor_heptachlorepoxide_value)
     if len(wqi_group2_si) == 0:
         return 1
-    wqi_group2 = (np.prod(wqi_group2_si) ** (1/len(wqi_group2_si))) / 100
+    wqi_group2 = (np.prod(wqi_group2_si) ** (1/len(wqi_group2_si)))
     return wqi_group2
 
 def wqi_iii(
@@ -106,7 +106,7 @@ def wqi_iii(
         wqi_group3_si.append(wqi_hg_value)
     if len(wqi_group3_si) == 0:
         return 1
-    wqi_group3 = ((np.prod(wqi_group3_si) ** (1/len(wqi_group3_si)))) / 100
+    wqi_group3 = ((np.prod(wqi_group3_si) ** (1/len(wqi_group3_si))))
     return wqi_group3
 
 def wqi_iv(
@@ -130,7 +130,7 @@ def wqi_iv(
     wqi_group4_si = []
     if 'do_value' in wqi_iv_sis.keys() and\
           not pd.isna(wqi_iv_sis['do_value']) and\
-              temperature is not None:
+              not pd.isna(temperature):
         do_value = wqi_iv_sis['do_value']
         wqi_do_value = wqi_do(do_value, temperature)
         wqi_group4_si.append(wqi_do_value)

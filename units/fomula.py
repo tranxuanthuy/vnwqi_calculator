@@ -77,9 +77,9 @@ def wqi(wqi_i_sis, wqi_ii_sis, wqi_iii_sis, wqi_iv_sis, wqi_v_sis, temperature, 
         raise ValueError("Nhóm IV cần ít nhất 3 giá trị.")
     
     from units.wqi_group import wqi_i, wqi_ii, wqi_iii, wqi_iv, wqi_v
-    wqi_i_value = wqi_i(wqi_i_sis)
-    wqi_ii_value = wqi_ii(wqi_ii_sis)
-    wqi_iii_value = wqi_iii(wqi_iii_sis)
+    wqi_i_value = wqi_i(wqi_i_sis) / 100
+    wqi_ii_value = wqi_ii(wqi_ii_sis) / 100
+    wqi_iii_value = wqi_iii(wqi_iii_sis) / 100
     wqi_iv_value = wqi_iv(wqi_iv_sis, temperature)
     wqi_v_value = wqi_v(wqi_v_sis)
     
