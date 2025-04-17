@@ -21,7 +21,7 @@ This is a simple Streamlit web application for calculating the **Water Quality I
 
 ```bash
 git clone https://github.com/tranxuanthuy/vnwqi_calculator.git
-cd your-repo-folder
+cd vnwqi_calculator
 ```
 
 ### 2. Run the application
