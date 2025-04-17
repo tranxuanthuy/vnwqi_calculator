@@ -1,5 +1,5 @@
 from utils.tables import ph_table
-from utils.formula import first_fomula, second_fomula
+from utils.fomula import first_fomula, second_fomula
 '''GROUP I: pH'''
 def wqi_ph(value):
     '''pH Water Quality Index
@@ -318,8 +318,9 @@ def wqi_cod(value):
         else if value >= 150 wqi_cod = 10
         else follow the first fomula
     '''
-    bpi = [10, 15, 30, 50, 150]
-    qi = [100, 75, 50, 25, 10]
+    from utils.tables import cod_table
+    bpi = cod_table['bpi']
+    qi = cod_table['qi']
     if value <= bpi[0]:
         return 100
     elif value >= bpi[-1]:
@@ -340,8 +341,9 @@ def wqi_toc(value):
         else if value >= 50 wqi_toc = 10
         else follow the first fomula
     '''
-    bpi = [4, 6, 15, 25, 50]
-    qi = [100, 75, 50, 25, 10]
+    from utils.tables import toc_table
+    bpi = toc_table['bpi']
+    qi = toc_table['qi']
     if value <= bpi[0]:
         return 100
     elif value >= bpi[-1]:
@@ -362,8 +364,9 @@ def wqi_nnh4(value):
         else if value >= 5 wqi_nnh4 = 10
         else follow the first fomula
     '''
-    bpi = [.3, .6, .9, 5]
-    qi = [75, 50, 25, 10]
+    from utils.tables import nnh4_table
+    bpi = nnh4_table['bpi']
+    qi = nnh4_table['qi']
     if value < bpi[0]:
         return 100
     elif value >= bpi[-1]:
@@ -383,8 +386,9 @@ def wqi_nno3(value):
         if value <= 2 wqi_nno3 = 100
         else if value >= 15 wqi_nno3 = 10
         else follow the first fomula'''
-    bpi = [2, 5, 10, 15]
-    qi = [100, 75, 50, 25]
+    from utils.tables import nno3_table
+    bpi = nno3_table['bpi']
+    qi = nno3_table['qi']
     if value <= bpi[0]:
         return 100
     elif value > bpi[-1]:
@@ -395,7 +399,7 @@ def wqi_nno3(value):
         if value > bpi[i] and value < bpi[i + 1]:
             return first_fomula(qi[i], qi[i + 1], bpi[i], bpi[i + 1], value)
         
-def wqi_nno2(value, threshold=0.05):
+def wqi_nno2(value):
     '''
     N-NO2 Water Quality Index
     input:
@@ -404,7 +408,8 @@ def wqi_nno2(value, threshold=0.05):
         if value <=0.05 wqi_nno2 = 100
         else if value >= 0.05 wqi_nno2 = 10
         else follow the first fomula'''
-    if value <= threshold:
+    from utils.tables import nno2_threadsold
+    if value <= nno2_threadsold:
         return 100
     return 10
 
@@ -418,8 +423,9 @@ def wqi_ppo4(value):
         else if value >= 4 wqi_ppo4 = 10
         else follow the first fomula
     '''
-    bpi = [.1, .2, .3, .5, 4]
-    qi = [100, 75, 50, 25, 10]
+    from utils.tables import ppo4_table
+    bpi = ppo4_table['bpi']
+    qi = ppo4_table['qi']
     if value <= bpi[0]:
         return 100
     elif value >= bpi[-1]:
@@ -429,3 +435,49 @@ def wqi_ppo4(value):
     for i in range(len(bpi) - 1):
         if value > bpi[i] and value < bpi[i + 1]:
             return first_fomula(qi[i], qi[i + 1], bpi[i], bpi[i + 1], value)
+        
+'''GROUP V: (nhóm thông số vi sinh): bao gồm các thông số Coliform, E.coli'''
+def wqi_coliform(value):
+    '''
+    Coliform Water Quality Index
+    input:
+        value: Coliform value (unit: MPN/100ml)
+    output:
+        if value <= 2 500 wqi_coliform = 100
+        else if value >= 10 000 wqi_coliform = 10
+        else follow the first fomula
+    '''
+    from utils.tables import coliform_table
+    bqi = coliform_table['bpi']
+    qi = coliform_table['qi']
+    if value <= bqi[0]:
+        return 100
+    elif value > bqi[-1]:
+        return 10
+    elif value in bqi:
+        return qi[bqi.index(value)]
+    for i in range(len(bqi) - 1):
+        if value > bqi[i] and value < bqi[i + 1]:
+            return first_fomula(qi[i], qi[i + 1], bqi[i], bqi[i + 1], value)
+
+def wqi_ecoli(value):
+    '''
+    E.coli Water Quality Index
+    input:
+        value: E.coli value (unit: MPN/100ml)
+    output:
+        if value <= 20 wqi_ecoli = 100
+        else if value > 200 wqi_ecoli = 10
+        else follow the first fomula'''
+    from utils.tables import ecoli_table
+    bqi = ecoli_table['bpi']
+    qi = ecoli_table['qi']
+    if value <= bqi[0]:
+        return 100
+    elif value > bqi[-1]:
+        return 10
+    elif value in bqi:
+        return qi[bqi.index(value)]
+    for i in range(len(bqi) - 1):
+        if value > bqi[i] and value < bqi[i + 1]:
+            return first_fomula(qi[i], qi[i + 1], bqi[i], bqi[i + 1], value)

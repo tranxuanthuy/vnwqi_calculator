@@ -1,6 +1,14 @@
 import pandas as pd
 import numpy as np
 
+group_definitions = {
+    "I" : ["pH"], 
+    "II" : ["Aldrin", "BHC", "Dieldrin", "DDTs", "Heptachlor & Heptachlorepoxide"],
+    "III" : ["As", "Cd", "Pb", "Cr6", "Cu", "Zn", "Hg"],
+    "IV" : ["DO", "T", "BOD5", "COD", "TOC", "N_NH4", "N_NO3", "N_NO2", "P_PO4"],
+    "V": ["Coliform", "Ecoli"]
+}
+
 # table ph
 ph_table = {
     'bpi': [5.5, 6, 8.5, 9],

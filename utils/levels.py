@@ -1,5 +1,5 @@
 # Table 7 in vn-wqi calculation guide
-def dss1_level(wqi_value):
+def wqi_level(wqi_value):
     status = ''
     if wqi_value is not None:
         if wqi_value < 10:
@@ -16,7 +16,7 @@ def dss1_level(wqi_value):
             status =  "Rất tốt"
     return status
 
-def dss1_color(wqi_value):
+def wqi_color(wqi_value):
     color = ''
     if wqi_value is not None:
         if wqi_value < 10:
