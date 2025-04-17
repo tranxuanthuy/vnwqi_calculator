@@ -20,11 +20,14 @@ This is a simple Streamlit web application for calculating the **Water Quality I
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/tranxuanthuy/vnwqi_calculator.git
 cd your-repo-folder
 ```
+
 ### 2. Run the application
+```bash
 docker compose up --build
+```
 
 ### 3. Access the app
 Open your browser and go to:
